@@ -1,9 +1,14 @@
 function calculateTotalSalary(lineup) {
-  return 0
+  return lineup.reduce((playerSalary, player) => {
+    return playerSalary + player.salary
+  }, 0)
 }
 
 function getPositionCounts(lineup) {
-  return {}
+  return lineup.reduce((playerPosition, player) => {
+    playerPosition[player.position] = playerPosition[player.position] === undefined ? 1 : playerPosition[player.position] + 1
+    return playerPosition
+  }, {})
 }
 
 function getGameCounts(lineup) {
@@ -21,7 +26,9 @@ function getTeamCounts(lineup) {
 }
 
 function violatesGameCount(games) {
-  return Object.values(games).some((count) => { return count > 3 })
+  return Object.values(games).some((count) => {
+    return count > 3
+  })
 }
 
 function violatesPositionCount(positions) {
@@ -35,7 +42,9 @@ function violatesSalary(lineup) {
 }
 
 function violatesTeamCount(teams) {
-  return Object.values(teams).some((count) => { return count > 2 })
+  return Object.values(teams).some((count) => {
+    return count > 2
+  })
 }
 
 function validateLineup(lineup) {
